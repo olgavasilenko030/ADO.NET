@@ -12,6 +12,9 @@ namespace ADO.NET
 	{
 		static void Main(string[] args)
 		{
+
+
+			////////
 			//1) бЕРЕМ СТРОКУ ПОДКЛЮЧЕНИЯ
 			const int PADDING = 30;
 			const string CONNECTION_STRING =
