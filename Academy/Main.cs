@@ -77,15 +77,15 @@ namespace Academy
 						"direction_name"
 						
 						);
-					LabelCount.Text = $"Количество студентов:{dgvDirections.RowCount - 1}.";
+					LabelCount.Text = $"Количество направлений:{dgvDirections.RowCount - 1}.";
 					break;
 				case 3:
 					dgvDisciplines.DataSource = connector.Select("*", "Disciplines");
-					LabelCount.Text = $"Количество студентов:{dgvDisciplines.RowCount - 1}.";
+					LabelCount.Text = $"Количество дисциплин:{dgvDisciplines.RowCount - 1}.";
 					break;
 				case 4:
 					dgvTeachers.DataSource = connector.Select("*", "Teachers");
-					LabelCount.Text = $"Количество студентов:{dgvTeachers.RowCount - 1}.";
+					LabelCount.Text = $"Количество учителей:{dgvTeachers.RowCount - 1}.";
 					break;
 
 
@@ -101,7 +101,11 @@ namespace Academy
 						"Groups,Directions",
 						$"direction=direction_id AND direction = N'{d_directions[cbGroupsDirection.SelectedItem.ToString()]}'"
 						);
-			LabelCount.Text = $"Количество групп:{dgvGroups.RowCount - 1}.";
+			LabelCount.Text = $"Количество групп: {CountRecordsInDGV(dgvGroups)}.";
+		}
+		int CountRecordsInDGV (DataGridView dgv)
+		{ 
+			return dgv.Rows.Count == 0 ? 0:dgv.RowCount -1;
 		}
 	}
 }
