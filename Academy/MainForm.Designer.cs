@@ -1,6 +1,6 @@
 ﻿namespace Academy
 {
-	partial class Main
+	partial class MainForm
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -32,6 +32,8 @@
 			this.LabelCount = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.tabPageStudent = new System.Windows.Forms.TabPage();
+			this.cbStudentsDirection = new System.Windows.Forms.ComboBox();
+			this.cbStudentsGroup = new System.Windows.Forms.ComboBox();
 			this.dgvStudents = new System.Windows.Forms.DataGridView();
 			this.tabPageGroups = new System.Windows.Forms.TabPage();
 			this.cbGroupsDirection = new System.Windows.Forms.ComboBox();
@@ -42,8 +44,6 @@
 			this.dgvDisciplines = new System.Windows.Forms.DataGridView();
 			this.tabPageTeachers = new System.Windows.Forms.TabPage();
 			this.dgvTeachers = new System.Windows.Forms.DataGridView();
-			this.cbStudentsGroup = new System.Windows.Forms.ComboBox();
-			this.cbStudentsDirection = new System.Windows.Forms.ComboBox();
 			this.statusStrip1.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.tabPageStudent.SuspendLayout();
@@ -103,6 +103,25 @@
 			this.tabPageStudent.Text = "Student";
 			this.tabPageStudent.UseVisualStyleBackColor = true;
 			// 
+			// cbStudentsDirection
+			// 
+			this.cbStudentsDirection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbStudentsDirection.FormattingEnabled = true;
+			this.cbStudentsDirection.Location = new System.Drawing.Point(387, 25);
+			this.cbStudentsDirection.Name = "cbStudentsDirection";
+			this.cbStudentsDirection.Size = new System.Drawing.Size(380, 24);
+			this.cbStudentsDirection.TabIndex = 2;
+			this.cbStudentsDirection.SelectedIndexChanged += new System.EventHandler(this.ComboBox_SelectedIndexChanged);
+			// 
+			// cbStudentsGroup
+			// 
+			this.cbStudentsGroup.FormattingEnabled = true;
+			this.cbStudentsGroup.Location = new System.Drawing.Point(9, 25);
+			this.cbStudentsGroup.Name = "cbStudentsGroup";
+			this.cbStudentsGroup.Size = new System.Drawing.Size(358, 24);
+			this.cbStudentsGroup.TabIndex = 1;
+			this.cbStudentsGroup.SelectedIndexChanged += new System.EventHandler(this.ComboBox_SelectedIndexChanged);
+			// 
 			// dgvStudents
 			// 
 			this.dgvStudents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -138,7 +157,7 @@
 			this.cbGroupsDirection.Name = "cbGroupsDirection";
 			this.cbGroupsDirection.Size = new System.Drawing.Size(383, 24);
 			this.cbGroupsDirection.TabIndex = 1;
-			this.cbGroupsDirection.SelectedIndexChanged += new System.EventHandler(this.cbDirection_SelectedIndexChanged);
+			this.cbGroupsDirection.SelectedIndexChanged += new System.EventHandler(this.ComboBox_SelectedIndexChanged);
 			// 
 			// dgvGroups
 			// 
@@ -229,25 +248,7 @@
 			this.dgvTeachers.Size = new System.Drawing.Size(792, 359);
 			this.dgvTeachers.TabIndex = 0;
 			// 
-			// cbStudentsGroup
-			// 
-			this.cbStudentsGroup.FormattingEnabled = true;
-			this.cbStudentsGroup.Location = new System.Drawing.Point(9, 25);
-			this.cbStudentsGroup.Name = "cbStudentsGroup";
-			this.cbStudentsGroup.Size = new System.Drawing.Size(358, 24);
-			this.cbStudentsGroup.TabIndex = 1;
-			// 
-			// cbStudentsDirection
-			// 
-			this.cbStudentsDirection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbStudentsDirection.FormattingEnabled = true;
-			this.cbStudentsDirection.Location = new System.Drawing.Point(387, 25);
-			this.cbStudentsDirection.Name = "cbStudentsDirection";
-			this.cbStudentsDirection.Size = new System.Drawing.Size(380, 24);
-			this.cbStudentsDirection.TabIndex = 2;
-			this.cbStudentsDirection.SelectedIndexChanged += new System.EventHandler(this.cbDirection_SelectedIndexChanged);
-			// 
-			// Main
+			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -255,7 +256,7 @@
 			this.Controls.Add(this.tabControl);
 			this.Controls.Add(this.statusStrip1);
 			this.MinimumSize = new System.Drawing.Size(640, 480);
-			this.Name = "Main";
+			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Academy_PV_319";
 			this.statusStrip1.ResumeLayout(false);
