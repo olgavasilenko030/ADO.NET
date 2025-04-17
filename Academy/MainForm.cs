@@ -169,7 +169,7 @@ namespace Academy
 		
 		int CountRecordsInDGV (DataGridView dgv)
 		{ 
-			return dgv.Rows.Count == 0 ? 0:dgv.RowCount -1;
+			return dgv.RowCount == 0 ? 0:dgv.RowCount -1;
 		}
 
 		private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -177,6 +177,7 @@ namespace Academy
 			string cb_name = (sender as ComboBox).Name;
 			string tab_name = tabControl.SelectedTab.Name;
 			int last_capital_index = Array.FindLastIndex<char>(cb_name.ToCharArray(), Char.IsUpper);
+			//https://stackoverflow.com/questions/32736514/find-last-substring-starting-with-uppercase-letter
 			string cb_suffix = cb_name.Substring(last_capital_index);
 
 			Console.WriteLine(cb_name);
@@ -186,8 +187,11 @@ namespace Academy
 			//Есть строка, которая хранит имя вкладки (tab)
 			// Из этой строки мы получаем имя словаря:
 			string dictionary_name = $"d_{cb_suffix.ToLower()}s";
+			Console.WriteLine(dictionary_name);
+			Console.WriteLine("\n--------------------------------------------\n");
 			//По имени словаря, которое хранится в строке мы получаем сам словарь при помощи Рефлексии
-			Dictionary<string, int> dictionary = this.GetType().GetField(dictionary_name).GetValue(this) as Dictionary<string,int>;
+			Dictionary<string, int> dictionary = 
+				this.GetType().GetField(dictionary_name).GetValue(this) as Dictionary<string,int>;
 			// Reflection -это подход, который позволяет обратиться к переменной когда ее имя хранится в строке
 			/////////////////////////////////////////////////////////////
 			
@@ -226,15 +230,17 @@ namespace Academy
 		{
 			Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 			Console.WriteLine(dependent.Name+"\t"+determinant.Name);
-			string dependent_root = dependent.Name.Substring(Array.FindLastIndex<char>(dependent.Name.ToCharArray(),Char.IsUpper));
-			string determinant_root = determinant.Name.Substring(Array.FindLastIndex<char>(determinant.Name.ToCharArray(),Char.IsUpper));
+			string dependent_root = 
+				dependent.Name.Substring(Array.FindLastIndex<char>(dependent.Name.ToCharArray(),Char.IsUpper));
+			string determinant_root = 
+				determinant.Name.Substring(Array.FindLastIndex<char>(determinant.Name.ToCharArray(),Char.IsUpper));
 
 			Dictionary<string,int> dictionary =
 				connector.GetDictionary
 				(
 					$"{dependent_root.ToLower()}_id,{dependent_root.ToLower()}_name",
-					$"{dependent_root}s,{dependent_root}s",
-					determinant.SelectedValue == null ? "" : $"{determinant_root.ToLower()}={determinant.SelectedValue}_id"
+					$"{dependent_root}s,{determinant_root}s",
+					determinant.SelectedItem == null  || determinant.SelectedIndex <= 0 ? "" : $"{determinant_root.ToLower()}={determinant.SelectedIndex}"
 					);
 
 			foreach(KeyValuePair<string,int> d in dictionary)
@@ -245,8 +251,8 @@ namespace Academy
 			dependent.Items.Clear();
 			dependent.Items.AddRange(dictionary.Select(d=>d.Key).ToArray());
 
-			Console.WriteLine("dependent:\t"+dependent_root);
-			Console.WriteLine("determinant:\t"+determinant_root);
+			Console.WriteLine("Dependent:  \t"+dependent_root);
+			Console.WriteLine("Determinant:\t"+determinant_root);
 			Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 
 		}
